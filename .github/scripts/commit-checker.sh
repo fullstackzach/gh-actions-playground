@@ -24,7 +24,7 @@ BRANCH_COMMITS=$(git rev-list ${BRANCH_MERGE_BASE}..HEAD)
 
 # Check every commit message since ancestor for regex match
 for commit in $BRANCH_COMMITS; do
-    CURRENT_COMMIT_MSG=$(git log --max-count=1 --format=%B $commit | tr '[a-z]' '[A-Z]')
+    COMMIT_MSG_UPPER=$(git log --max-count=1 --format=%B $commit | tr '[a-z]' '[A-Z]')
     
     if echo $COMMIT_MSG_UPPER | grep -iqE "$skip_regex"; then
        echo "************"
