@@ -14,5 +14,5 @@ jobs:
         ref: '${{ github.event.pull_request.base.ref }}'
 
     - name: Commit validation
-      run: bash ${GITHUB_WORKSPACE}/scripts/commit-checker.sh ${{ github.event.pull_request.head.ref }} ${{ github.event.pull_request.base.ref }}
+      run: bash ${GITHUB_WORKSPACE}/.github/scripts/commit-checker.sh ${{ github.event.pull_request.head.ref }} ${{ github.event.pull_request.base.ref }}
         
