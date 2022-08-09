@@ -39,7 +39,7 @@ done
 # If any commit are invalid, print reject message
 if [ "$invalidCommit" == true ]; then
     echo "Commits must include a JIRA ticket number e.g. AAA-1234"
-    echo "You can skip this step if necessary by running \"git --amend\" and add \"[skip jira]\" in your commit message"
+    echo "You can skip this step if necessary by running \"git commit --amend\" and add \"[skip jira]\" in your commit message"
     echo "Please fix the commit message(s) and push again."
     echo "https://help.github.com/en/articles/changing-a-commit-message"
     echo "************"
