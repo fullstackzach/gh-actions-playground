@@ -5,6 +5,7 @@ on: [pull_request]
 
 jobs:
   commit-checker:
+    if: "!contains(github.event.commits[0].message, '[skip jira]')"
     runs-on: ubuntu-latest
     
     steps:

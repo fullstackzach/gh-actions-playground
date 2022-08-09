@@ -28,7 +28,8 @@ for commit in $BRANCH_COMMITS; do
     else
         # If commit doesn't match regex, commit isn't valid, print commit info
         echo "************"
-        printf "Invalid commit message: \"%s\" and hash: %s\n" "$(git log --max-count=1 --format=%B $commit)" "$commit"
+        printf "Invalid commit message: \"%s\"\n" "$(git log --max-count=1 --format=%B $commit)" 
+        printf "commit sha: %s\n" "$commit"
         echo "************"
         
         # Set this variable to trigger rejection if any commit fails regex
@@ -37,7 +38,8 @@ for commit in $BRANCH_COMMITS; do
 done
 # If any commit are invalid, print reject message
 if [ "$invalidCommit" == true ]; then
-    echo "Your push was rejected because at least one commit message on this branch is invalid"
+    echo "Commits must include a JIRA ticket number e.g. AAA-1234"
+    echo "You can skip this step if necessary by running \"git --amend\" and add \"[skip jira]\" in your commit message"
     echo "Please fix the commit message(s) and push again."
     echo "https://help.github.com/en/articles/changing-a-commit-message"
     echo "************"
