@@ -36,9 +36,10 @@ for commit in $BRANCH_COMMITS; do
         invalidCommit=true
     fi
 done
-# If any commit are invalid, print reject message
+
+# If any commit are invalid, print the reject message
 if [ "$invalidCommit" == true ]; then
-    echo "Commits must include a JIRA ticket number e.g. AAA-1234"
+    echo "Commit messages must include a JIRA ticket number e.g. \"AAA-1234\". This can be anywhere in your commit"
     echo "You can skip this step if necessary by running \"git commit --amend\" and add \"[skip jira]\" in your commit message"
     echo "Please fix the commit message(s) and push again."
     echo "https://help.github.com/en/articles/changing-a-commit-message"
