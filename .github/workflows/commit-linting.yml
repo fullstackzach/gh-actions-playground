@@ -1,4 +1,4 @@
-name: Commit Linting
+name: Commit messages contain a Jira issue
 
 # Run on push to any branch
 on: [pull_request]
@@ -13,5 +13,5 @@ jobs:
         fetch-depth: 0
         ref: '${{ github.event.pull_request.base.ref }}'
 
-    - name: Jira ticket is preset in commit messages
+    - name: Commit messages contain a Jira issue
       run: bash ${GITHUB_WORKSPACE}/.github/scripts/commit-checker.sh ${{ github.event.pull_request.head.ref }} ${{ github.event.pull_request.base.ref }}
