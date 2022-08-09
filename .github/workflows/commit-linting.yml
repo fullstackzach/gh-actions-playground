@@ -1,0 +1,17 @@
+name: Commit Linting
+
+# Run on push to any branch
+on: [pull_request]
+
+jobs:
+  commit-linting:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+        ref: '${{ github.event.pull_request.base.ref }}'
+
+    - name: Jira ticket is preset in commit messages
+      run: bash ${GITHUB_WORKSPACE}/.github/scripts/commit-checker.sh ${{ github.event.pull_request.head.ref }} ${{ github.event.pull_request.base.ref }}

@@ -20,8 +20,6 @@ BRANCH_MERGE_BASE=$(git merge-base ${BASE_BRANCH} ${CURRENT_BRANCH})
 # Find all commits since common ancestor
 BRANCH_COMMITS=$(git rev-list ${BRANCH_MERGE_BASE}..HEAD)
 
-#echo $BRANCH_COMMITS
-
 # Check every commit message since ancestor for regex match
 for commit in $BRANCH_COMMITS; do
     COMMIT_MSG_UPPER=$(git log --max-count=1 --format=%B $commit | tr '[a-z]' '[A-Z]')
@@ -50,7 +48,7 @@ done
 # If any commit are invalid, print the reject message
 if [ "$invalidCommit" == true ]; then
     echo "Commit messages must include a JIRA ticket number e.g. \"AAA-1234\". This can be anywhere in your commit"
-    echo "You can skip this step if necessary by running \"git commit --amend\" and add \"[skip jira]\" in your commit message"
+    echo "You can skip this whole step if necessary by running \"git commit --amend\" and add \"[skip jira]\" in your commit message"
     echo "Please fix the commit message(s) and push again."
     echo "https://help.github.com/en/articles/changing-a-commit-message"
     echo "************"
