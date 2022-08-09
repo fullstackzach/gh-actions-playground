@@ -1,3 +1,3 @@
 # gh-actions-playground
 
-test 234567
+test 234567s
