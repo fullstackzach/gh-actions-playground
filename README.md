@@ -1,3 +1,3 @@
 # gh-actions-playground
 
-test
+test 2
