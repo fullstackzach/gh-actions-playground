@@ -6,6 +6,7 @@ git checkout -q $1
 # Set variables
 BASE_BRANCH=$2
 msg_regex='(AAA|BBB|CCC)\-[0-9]+'
+skip_regex='\[SKIP JIRA\]'
 
 # Initialize invalidCommit as false, will be set to true by any invalid commits
 invalidCommit=false
@@ -23,7 +24,16 @@ BRANCH_COMMITS=$(git rev-list ${BRANCH_MERGE_BASE}..HEAD)
 
 # Check every commit message since ancestor for regex match
 for commit in $BRANCH_COMMITS; do
-    if git log --max-count=1 --format=%B $commit | tr '[a-z]' '[A-Z]' | grep -iqE "$msg_regex"; then
+    CURRENT_COMMIT_MSG=$(git log --max-count=1 --format=%B $commit | tr '[a-z]' '[A-Z]')
+    
+    if echo $COMMIT_MSG_UPPER | grep -iqE "$skip_regex"; then
+       echo "************"
+       echo "[skip jira] detected, skipping commit linting"
+       echo "************"
+       exit 0
+    fi
+
+    if echo $COMMIT_MSG_UPPER | grep -iqE "$msg_regex"; then
         : #If commit matches regex, commit is valid, do nothing
     else
         # If commit doesn't match regex, commit isn't valid, print commit info
