@@ -21,8 +21,14 @@ BRANCH_MERGE_BASE=$(git merge-base ${BASE_BRANCH} ${CURRENT_BRANCH})
 # Find all commits since common ancestor
 BRANCH_COMMITS=$(git rev-list ${BRANCH_MERGE_BASE}..HEAD)
 
+echo $CURRENT_BRANCH
+echo $BRANCH_MERGE_BASE
+echo $BRANCH_COMMITS
+
 # Check every commit message since ancestor for regex matchs
 for commit in $BRANCH_COMMITS; do
+
+
     COMMIT_MSG_UPPER=$(git log --max-count=1 --format=%B $commit | tr '[a-z]' '[A-Z]')
     
     if echo $COMMIT_MSG_UPPER | grep -iqE "$skip_regex"; then
