@@ -14,4 +14,4 @@ jobs:
         ref: '${{ github.event.pull_request.base.ref }}'
 
     - name: Branch or Commits includes a Jira issue
-      run: bash ${GITHUB_WORKSPACE}/.github/scripts/commit-checker-loose.sh ${{ github.event.pull_request.head.ref }} ${{ github.event.pull_request.base.ref }}
+      run: bash ${GITHUB_WORKSPACE}/.github/scripts/commit-linting-loose.sh ${{ github.event.pull_request.head.ref }} ${{ github.event.pull_request.base.ref }}
