@@ -7,7 +7,7 @@ git checkout -q $1
 
 # Set variables
 BASE_BRANCH=$2
-msg_regex='(AAA|BBB|CCC)\-[0-9]+'
+msg_regex='(AUS)\-[0-9]+'
 skip_regex='\[SKIP JIRA\]'
 
 # Initialize invalidCommit as false, will be set to true by any invalid commits
@@ -56,9 +56,9 @@ if echo $CURRENT_BRANCH_UPPER | grep -iqE "$msg_regex"; then
     exit 0
 fi
 
-# If we made it thsis far, no JIRA ticket # was detected in a commit or branch, print the reject message and fail the job
+# If we made it this far, no JIRA ticket # was detected in a commit or branch, print the reject message and fail the job
 
-echo "⛔️ Atleast one commit messages OR your branch name must include a JIRA ticket number e.g. \"AAA-1234\". This can be anywhere in your commit"
+echo "⛔️ At least one commit message OR your branch name must include a JIRA ticket number e.g. \"AAA-1234\". This can be anywhere in your commit"
 echo "You can skip this whole step if necessary by running \"git commit --amend\" and add \"[skip jira]\" in your last commit message, and force-push"
 echo "Please fix the commit message and push again."
 echo "https://help.github.com/en/articles/changing-a-commit-message"
