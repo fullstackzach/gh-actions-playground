@@ -32,8 +32,6 @@ for commit in $BRANCH_COMMITS; do
        exit 0
     fi
 
-    echo $COMMIT_MSG_UPPER
-
     if echo $COMMIT_MSG_UPPER | grep -iqE "$msg_regex"; then
        echo "************"
        echo "Jira ticket # found in a commit mesage 👍🏻"
