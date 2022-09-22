@@ -16,4 +16,5 @@ jobs:
     - name: Branch or Commits includes a Jira issue
       run: |
         git checkout ${{ github.event.pull_request.head.ref }}
+        echo ${{ github.event.pull_request.head.ref }}
         bash ${GITHUB_WORKSPACE}/.github/scripts/commit-linting-loose.sh ${{ github.event.pull_request.head.ref }} ${{ github.event.pull_request.base.ref }}
